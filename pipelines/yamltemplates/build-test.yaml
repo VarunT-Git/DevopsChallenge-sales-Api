@@ -5,3 +5,4 @@ steps:
     dockerfile: src/DevOpsChallenge.SalesApi/Dockerfile
     command: build
     tags: $(Build.BuildId)
+    buildContext: $(Build.Repository.LocalPath)
