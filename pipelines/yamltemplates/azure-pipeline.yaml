@@ -10,7 +10,7 @@ pr:
 
 stages:
 - stage: BuildAndTest
-  displayName: 'Build and unit all the components'
+  displayName: 'Build and unit test all the components'
 
   jobs:
   - job: 'Build'

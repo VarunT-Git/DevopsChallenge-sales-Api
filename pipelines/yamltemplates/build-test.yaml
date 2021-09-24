@@ -2,6 +2,6 @@ steps:
 - task: Docker@2
   displayName: Build
   inputs:
-    dockerfile: Dockerfile
+    dockerfile: src/DevOpsChallenge.SalesApi/Dockerfile
     command: build
     tags: $(Build.BuildId)
