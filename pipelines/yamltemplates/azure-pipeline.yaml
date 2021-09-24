@@ -1,0 +1,23 @@
+name: $(SourceBranchName)_$(Date:yyyyMMdd))_$(Rev:r)
+
+trigger:
+   branches:
+      include:
+          - main
+
+pr:
+- master
+
+stages:
+- stage: BuildAndTest
+  displayName: 'Build and unit all the components'
+
+  jobs:
+  - job: 'Build'
+    displayName: Build Solution
+    pool:
+      vmImage: 'ubuntu-latest'
+    workspace:
+       clean: all
+    steps:
+    - template: build-test.yaml
