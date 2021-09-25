@@ -26,7 +26,8 @@ COPY . .
 WORKDIR "/src/tests/DevOpsChallenge.SalesApi.Business.UnitTests"
 RUN dotnet build "DevOpsChallenge.SalesApi.Business.UnitTests.csproj" -c Release -o /app/build
 
-RUN dotnet test "tests/DevOpsChallenge.SalesApi.Business.UnitTests/DevOpsChallenge.SalesApi.Business.UnitTests.csproj" --logger "trx;LogFileName=salesapibusiness.trx" 
+WORKDIR "/src/tests/DevOpsChallenge.SalesApi.Business.UnitTests"
+RUN dotnet test "DevOpsChallenge.SalesApi.Business.UnitTests.csproj" --logger "trx;LogFileName=salesapibusiness.trx" 
 
 # publish the API
 FROM build AS publish
