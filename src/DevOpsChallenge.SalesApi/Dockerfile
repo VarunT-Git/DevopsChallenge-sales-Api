@@ -17,17 +17,16 @@ COPY . .
 WORKDIR "/src/src/DevOpsChallenge.SalesApi"
 RUN dotnet build "DevOpsChallenge.SalesApi.csproj" -c Release -o /app/build
 
-cd ..
 
-COPY ["tests/DevOpsChallenge.SalesApi.Business.UnitTests.csproj", "tests/DevOpsChallenge.SalesApi.Business.UnitTests/"]
+COPY ["tests/DevOpsChallenge.SalesApi.Business.UnitTests/DevOpsChallenge.SalesApi.Business.UnitTests.csproj", "tests/DevOpsChallenge.SalesApi.Business.UnitTests/"]
 
-RUN dotnet restore "tests/DevOpsChallenge.SalesApi.Business.UnitTests.csproj"
+RUN dotnet restore "tests/DevOpsChallenge.SalesApi.Business.UnitTests/DevOpsChallenge.SalesApi.Business.UnitTests.csproj"
 
-COPY ./ ./
+COPY . .
 WORKDIR "/src/tests/DevOpsChallenge.SalesApi.Business.UnitTests"
 RUN dotnet build "DevOpsChallenge.SalesApi.Business.UnitTests.csproj" -c Release -o /app/build
 
-RUN dotnet test "tests/DevOpsChallenge.SalesApi.Business.UnitTests.csproj" --logger "trx;LogFileName=salesapibusiness.trx" 
+RUN dotnet test "tests/DevOpsChallenge.SalesApi.Business.UnitTests/DevOpsChallenge.SalesApi.Business.UnitTests.csproj" --logger "trx;LogFileName=salesapibusiness.trx" 
 
 # publish the API
 FROM build AS publish
