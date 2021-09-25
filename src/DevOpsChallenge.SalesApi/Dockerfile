@@ -11,10 +11,11 @@ COPY ["src/DevOpsChallenge.SalesApi/DevOpsChallenge.SalesApi.csproj", "src/DevOp
 COPY ["src/DevOpsChallenge.SalesApi.Business/DevOpsChallenge.SalesApi.Business.csproj", "src/DevOpsChallenge.SalesApi.Business/"]
 COPY ["src/DevOpsChallenge.SalesApi.Database/DevOpsChallenge.SalesApi.Database.csproj", "src/DevOpsChallenge.SalesApi.Database/"]
 
+WORKDIR /tests
 COPY ["tests/DevOpsChallenge.SalesApi.Business.UnitTests.csproj", "tests/DevOpsChallenge.SalesApi.Business.UnitTests/"]
 
 RUN dotnet restore "src/DevOpsChallenge.SalesApi/DevOpsChallenge.SalesApi.csproj"
-RUN dotnet restore ["tests/DevOpsChallenge.SalesApi.Business.UnitTests.csproj"
+RUN dotnet restore "tests/DevOpsChallenge.SalesApi.Business.UnitTests.csproj"
 
 COPY . .
 WORKDIR "/src/src/DevOpsChallenge.SalesApi"
@@ -34,5 +35,3 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "DevOpsChallenge.SalesApi.dll"]
-
-
