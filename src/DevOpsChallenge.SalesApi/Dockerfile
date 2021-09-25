@@ -15,6 +15,11 @@ COPY . .
 WORKDIR "/src/src/DevOpsChallenge.SalesApi"
 RUN dotnet build "DevOpsChallenge.SalesApi.csproj" -c Release -o /app/build
 
+# publish the API
+FROM build AS publish
+RUN dotnet publish "DevOpsChallenge.SalesApi.csproj" -c Release -o /app/publish
+
+
 #run unit tests
 COPY ["tests/DevOpsChallenge.SalesApi.Business.UnitTests/DevOpsChallenge.SalesApi.Business.UnitTests.csproj", "tests/DevOpsChallenge.SalesApi.Business.UnitTests/"]
 
@@ -31,10 +36,7 @@ RUN dotnet test "DevOpsChallenge.SalesApi.Business.UnitTests.csproj" --results-d
 
 
 
-# publish the API
-WORKDIR "/src/src/DevOpsChallenge.SalesApi"
-FROM build AS publish
-RUN dotnet publish "DevOpsChallenge.SalesApi.csproj" -c Release -o /app/publish
+
 
 FROM base AS final
 WORKDIR /app
