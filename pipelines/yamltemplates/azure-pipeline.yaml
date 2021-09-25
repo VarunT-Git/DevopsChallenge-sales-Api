@@ -1,4 +1,6 @@
 name: $(SourceBranchName)_$(Date:yyyyMMdd)_$(Rev:r)
+variables:
+- group: Sales.Api.Common
 
 trigger:
    branches:
