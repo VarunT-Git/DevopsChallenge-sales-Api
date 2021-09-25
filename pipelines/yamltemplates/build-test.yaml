@@ -6,9 +6,10 @@ steps:
     command: build
     tags: $(baseVersion).$(Build.BuildId)
     buildContext: $(Build.Repository.LocalPath)
+    imageName: '$(ImageName)'
     arguments: '--build-arg BuildId=$(Build.BuildId)'
 
-- task: Docker@1
+- task: Docker@2
   displayName: Push
   inputs:
     containerRegistry: $(dockerHub)
