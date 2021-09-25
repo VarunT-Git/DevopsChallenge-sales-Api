@@ -1,5 +1,5 @@
 steps:
-- task: Docker@2
+- task: Docker@1
   displayName: Build and push image to docker hub
   inputs:
     containerRegistry: $(dockerHub)

@@ -29,14 +29,9 @@ COPY . .
 WORKDIR "/src/tests/DevOpsChallenge.SalesApi.Business.UnitTests"
 #RUN dotnet build "DevOpsChallenge.SalesApi.Business.UnitTests.csproj" -c Release -o /app/build
 
-FROM build AS test  
 ARG BuildId
 LABEL test=${BuildId}
 RUN dotnet test "DevOpsChallenge.SalesApi.Business.UnitTests.csproj" --results-directory /testresults --logger "trx;LogFileName=test_results.trx" 
-
-
-
-
 
 FROM base AS final
 WORKDIR /app
