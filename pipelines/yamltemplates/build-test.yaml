@@ -1,14 +1,20 @@
 steps:
-- task: Docker@1
-  displayName: Build and push image to docker hub
+- task: Docker@2
+  displayName: Build
   inputs:
-    containerRegistry: $(dockerHub)
     dockerfile: src/DevOpsChallenge.SalesApi/Dockerfile
-    command: buildAndPush
+    command: build
     tags: $(baseVersion).$(Build.BuildId)
     buildContext: $(Build.Repository.LocalPath)
-    repository: $(imageName)
     arguments: '--build-arg BuildId=$(Build.BuildId)'
+
+- task: Docker@1
+  displayName: Push
+  inputs:
+    containerRegistry: $(dockerHub)
+    command: push
+    tags: $(baseVersion).$(Build.BuildId)
+    repository: $(imageName)
 
 - pwsh: |
    $id=docker images --filter "label=test=$(Build.BuildId)" -q | Select-Object -First 1
