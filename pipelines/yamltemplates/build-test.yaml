@@ -5,7 +5,7 @@ steps:
     containerRegistry: $(dockerHub)
     dockerfile: src/DevOpsChallenge.SalesApi/Dockerfile
     command: buildAndPush
-    tags: $(Build.BuildId)
+    tags: $(baseVersion).$(Rev:r)
     buildContext: $(Build.Repository.LocalPath)
     repository: $(imageName)
     
