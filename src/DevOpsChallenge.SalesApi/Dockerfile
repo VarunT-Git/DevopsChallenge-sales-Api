@@ -17,13 +17,13 @@ COPY . .
 WORKDIR "/src/src/DevOpsChallenge.SalesApi"
 RUN dotnet build "DevOpsChallenge.SalesApi.csproj" -c Release -o /app/build
 
-COPY ./  ./
+cd ..
 
 COPY ["tests/DevOpsChallenge.SalesApi.Business.UnitTests.csproj", "tests/DevOpsChallenge.SalesApi.Business.UnitTests/"]
 
 RUN dotnet restore "tests/DevOpsChallenge.SalesApi.Business.UnitTests.csproj"
 
-
+COPY ./ ./
 WORKDIR "/src/tests/DevOpsChallenge.SalesApi.Business.UnitTests"
 RUN dotnet build "DevOpsChallenge.SalesApi.Business.UnitTests.csproj" -c Release -o /app/build
 
