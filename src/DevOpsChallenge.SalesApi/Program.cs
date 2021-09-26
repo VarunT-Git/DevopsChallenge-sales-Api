@@ -16,5 +16,10 @@ await Host.CreateDefaultBuilder(args)
     .ConfigureWebHostDefaults(webBuilder =>
     {
         webBuilder.UseStartup<Startup>();
+        webBuilder.UseKestrel((options) =>
+        {
+            //Turn off the server details in the repsonse header
+            options.AddServerHeader = false;
+        });
     })
     .RunConsoleAsync();
