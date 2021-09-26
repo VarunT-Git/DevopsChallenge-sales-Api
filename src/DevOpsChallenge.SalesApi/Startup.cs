@@ -76,7 +76,7 @@ namespace DevOpsChallenge.SalesApi
             services.AddSwaggerGen(c =>
             {
                 // Information
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "sales-api", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "sales-api", Version = "v1", Description = "This swagger has the endpoints that gets the sales records, adds new sale records, and the one that aggregates daily sales   " });
 
                 // Comments
                 string xmlCommentsFilePath = Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml");
